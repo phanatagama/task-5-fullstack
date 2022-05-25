@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Http\Controllers;
+
+// use App\Http\Controllers\Api\v1\PostController;
+use App\Http\Controllers\Api\v1\ArticlesController;
+use App\Http\Controllers\Api\v1\CategoriesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/v1/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [RegisterController::class, 'register']);
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:api');
+Route::post('/v1/register', [RegisterController::class, 'register']);
+Route::post('/v1/login', [LoginController::class, 'login'])->name('login');
+Route::post('/v1/logout', [LoginController::class, 'logout'])->middleware('auth:api');
+// Route::apiResource('/users', [PostController::class]);
+Route::apiResource('/v1/articles', ArticlesController::class)->middleware('auth:api');
+Route::apiResource('/v1/categories', CategoriesController::class)->middleware('auth:api');
