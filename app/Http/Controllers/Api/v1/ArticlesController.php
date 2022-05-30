@@ -138,7 +138,7 @@ class ArticlesController extends Controller
         //delete image
         Storage::delete('public/posts/'.$article->image);
 
-        //delete post
+        //delete article
         $article->delete();
 
         //return response
