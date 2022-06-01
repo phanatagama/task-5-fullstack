@@ -60,7 +60,7 @@ class ArticlesController extends Controller
             'categories_id' => Categories::whereBelongsTo(auth()->user())->pluck('id')->first(),
         ]);
 
-        //return response
+        // return response
         return new ArticlesResource(true, 'Data Articles Berhasil Ditambahkan!', $articles);
     }
 

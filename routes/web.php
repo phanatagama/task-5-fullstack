@@ -18,5 +18,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/articles/create', [App\Http\Controllers\HomeController::class, 'create']);
+Route::post('/articles/create', [App\Http\Controllers\HomeController::class, 'store']);
+Route::get('/articles/edit/{id}', [App\Http\Controllers\HomeController::class, 'edit']);
+Route::delete('/articles/{id}', [App\Http\Controllers\Api\v1\ArticlesController::class,'destroy']);
+Route::put('/articles/edit/{id}', [App\Http\Controllers\HomeController::class, 'update']);
