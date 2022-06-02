@@ -119,4 +119,23 @@ class HomeController extends Controller
         // return new ArticlesResource(true, 'Data Article Berhasil Diubah!', $articles);
         return redirect('/home');
     }
+
+    /**
+     * destroy
+     *
+     * @param  mixed $article
+     * @return void
+     */
+    public function destroy($id)
+    {
+        $article = Articles::find($id);
+        //delete image
+        Storage::delete('public/posts/'.$article->image);
+
+        //delete article
+        $article->delete();
+
+        //return response
+        return redirect('/home');
+    }
 }
